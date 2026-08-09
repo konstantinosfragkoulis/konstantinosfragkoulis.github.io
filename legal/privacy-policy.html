@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Travel Log — Privacy Policy</title>
-<meta name="description" content="Privacy policy for the Travel Log iOS app. Built around on-device processing; the developer does not collect any user data.">
+<meta name="description" content="Privacy policy for the Travel Log iOS app. Travel data is processed on the device and is not sent to the developer.">
 <style>
   :root { color-scheme: light dark; }
   body {
@@ -43,68 +43,83 @@
 <body>
 
 <h1>Travel Log — Privacy Policy</h1>
-<p class="meta">Effective date: 21 May 2026 · Last updated: 21 May 2026</p>
+<p class="meta">Effective date: 21 May 2026 · Last updated: 10 August 2026</p>
 
 <p class="lede">
-  <strong>Short version.</strong> Travel Log builds a journal of your trips using location and photo data <em>on your device</em>. The developer does not receive, store, or process any of your data. Nothing is sent to any server controlled by us. If you turn on iCloud sync, your data syncs through <em>your own</em> iCloud account (Apple is the processor under Apple's iCloud terms; we cannot see it). There is no analytics, no advertising, no third-party SDK, no tracking of any kind.
+  <strong>Short version.</strong> Travel Log builds a journal of your trips using location, photo and optional calendar data <em>on your device</em>. Your travel history is not sent to the developer, and nothing is sent to a server controlled by us. Optional features contact Apple services directly. If you turn on iCloud sync, your data syncs through <em>your own</em> iCloud account (we cannot see it). The app contains no analytics, advertising, third-party SDK or tracking. During TestFlight testing and App Store distribution, Apple may provide the developer with limited installation, usage, crash and feedback information, as explained below.
 </p>
 
 <h2>1. Who publishes this app?</h2>
 <p>Konstantinos Fragkoulis (referred to in this policy as "we", "us", or "the developer"), the independent publisher of the Travel Log iOS application. You can reach the developer at <a href="mailto:travellog@kfragkoulis.com">travellog@kfragkoulis.com</a>.</p>
-<p>Because the app stores and processes data only on your device and (optionally) in your own iCloud account, the developer is not — in operational terms — a controller or processor of your personal data: there is no server, no database, and no analytics pipeline on our side. This policy nevertheless describes the in-app data handling so that you can make an informed decision before granting permissions.</p>
+<p>The developer operates no server, database or analytics pipeline that receives your travel history. We may receive information that you choose to send by email or through TestFlight feedback, along with limited distribution and diagnostic information that Apple provides through TestFlight or App Store Connect. This policy describes both that limited information and the data handled inside the app so that you can make an informed decision before granting permissions.</p>
 
 <h2>2. What data does Travel Log handle on your device?</h2>
 <ul>
-  <li><strong>Approximate location.</strong> Travel Log registers for iOS <em>Significant Location Change</em> events — background "you have moved a meaningful distance" pings at roughly 500 m / cell-tower resolution. It does <em>not</em> record continuous GPS. Each event becomes a "ping" stored locally; pings are clustered into "stays" and "stays" into "trips."</li>
-  <li><strong>Photo metadata</strong>, only for photos you have authorised the app to read. When you opt into the Photo Library Import feature, or when you browse a trip's photos, the app reads each photo's <em>creation date</em> and <em>GPS coordinates</em> from its EXIF metadata to match it to a trip. The app does not upload, copy, or modify your photos.</li>
-  <li><strong>Reverse-geocoded place names.</strong> Coordinates are translated into human-readable city / country names using Apple's MapKit service. Your device sends the request directly to Apple; we do not see the request or the response. Apple's privacy policy applies to that lookup.</li>
-  <li><strong>AI-generated trip titles.</strong> The app uses Apple's on-device Foundation Models framework to produce a concise title for each trip. All inference runs on your device. Prompts and outputs never leave the device.</li>
-  <li><strong>Your "Home" and "Routine places."</strong> Coordinates and radii that you enter in onboarding or Settings, so the app knows which places to <em>exclude</em> from your trip list.</li>
+  <li><strong>Location.</strong> Travel Log registers for iOS <em>Significant Location Change</em> events. iOS provides occasional location readings after meaningful movement rather than a continuous GPS route. A reading can include coordinates, time, horizontal accuracy and, when available, altitude and vertical accuracy. Each accepted reading becomes a "ping" stored locally; pings are clustered into "stays" and "stays" into "trips."</li>
+  <li><strong>Photo data</strong>, only for photos you have authorised the app to read. When you opt into the Photo Library Import feature, or when you browse a trip's photos, the app reads the creation date and location made available by Photos so that it can match the photo to a trip and display it inside the app. The app does not upload, copy, modify or delete your photos.</li>
+  <li><strong>Calendar data (optional).</strong> If you grant Calendar access, Travel Log reads event titles, dates, locations, notes and basic calendar information to detect possible upcoming trips, help name past trips and support flight detection. Notes are inspected in memory for relevant signals but are not saved. Event titles, dates and locations, together with derived planned-trip information, may be stored on your device and in your iCloud when sync is enabled. The app never creates, edits or deletes calendar events. iOS calls this "Full Access" because it does not offer a read-only calendar permission.</li>
+  <li><strong>Place names and place search.</strong> Coordinates are translated into human-readable city / country names primarily by a geographic database <em>bundled inside the app</em> (built from open datasets — GeoNames, OpenStreetMap, Natural Earth and others, credited in Settings → About). These lookups happen entirely on your device. When the offline database has no useful answer, the app can send a coordinate directly to Apple's MapKit service. Place searches and the optional Calendar feature may also send search text or calendar location text directly to MapKit so that Apple can resolve it to a place. We do not see the request or the response, and Apple's privacy policy applies to it.</li>
+  <li><strong>Weather for stays and planned trips.</strong> The app uses Apple's WeatherKit service for historical weather on stays and forecasts for upcoming trips detected from your calendar. Your device sends the relevant coordinates and dates directly to Apple; the developer never sees these requests. The returned weather is stored on your device (and in your iCloud, if sync is on). Apple's privacy policy applies to the lookup.</li>
+  <li><strong>On-device AI output.</strong> The app uses Apple's on-device Foundation Models framework (Apple Intelligence) to produce trip titles, short trip summaries, natural-language search results, and an annual year-in-review narrative. All inference runs on your device. Prompts and outputs never leave the device.</li>
+  <li><strong>Your "Home", home area and Routine places.</strong> Travel Log stores the home coordinates and dates you enter, routine-place coordinates and radii, learned home-area places and any corrections you make. It uses these to distinguish ordinary life from travel.</li>
+  <li><strong>Files you choose to import or export.</strong> You can import Travel Log backups, GPX files and supported Google Timeline exports. The selected file is read on your device and used to create travel data. Exported Travel Log files can contain sensitive trip, home and location information and are saved wherever you choose in the system share sheet.</li>
+  <li><strong>System features.</strong> Travel Log can make trip titles, dates, place names and summaries available to iOS Spotlight, Siri and Shortcuts. Its widgets read selected trip and statistics data from the app's shared private container. If you allow notifications, notification text may include trip, country, homecoming or yearly-memory information.</li>
 </ul>
 
 <h2>3. What data does the developer collect?</h2>
-<p><strong>None.</strong> The app contains no analytics, no telemetry, no advertising SDK, no crash reporter, and no third-party network call. The developer has no infrastructure that receives any data from your installation of the app. We do not know that you have installed it; we do not know how you use it.</p>
+<p><strong>The app itself sends no travel data to the developer.</strong> It contains no analytics, telemetry, advertising SDK or crash-reporting SDK, and the developer has no infrastructure that receives data from your installation.</p>
+<p>Apple may nevertheless provide the developer with limited information through the services used to distribute the app:</p>
+<ul>
+  <li><strong>TestFlight.</strong> During beta testing, Apple automatically shares installation status, app and build version, device model and identifier, OS version, language, session counts, crashes and crash logs with the developer. If you submit TestFlight feedback, the developer also receives your comments, screenshots and related diagnostic details. Joining through a public link does not by itself reveal your name or email address to the developer. See Apple's <a href="https://www.apple.com/legal/privacy/data/en/test-flight/">TestFlight &amp; Privacy</a> notice.</li>
+  <li><strong>App Store Connect.</strong> Apple provides privacy-protected information such as downloads, installations, sessions and stability metrics. Some usage and diagnostic information is available only from users who have agreed to share it with developers, and Apple applies aggregation and privacy thresholds. See Apple's <a href="https://developer.apple.com/help/app-store-connect-analytics/">App Store Connect Analytics</a> documentation.</li>
+  <li><strong>Information you send us.</strong> If you email the developer or submit feedback, we receive the address and content you choose to provide.</li>
+</ul>
+<p>Apple's standard distribution and diagnostic information does not give the developer your Travel Log database, location history, photos, calendar contents or AI prompts. Information that you intentionally include in feedback, an attachment or a screenshot may contain details from the app. The information is used only to respond to you, investigate problems and improve the app. It is not sold, used for advertising or combined into a profile of your travels.</p>
 
 <h2>4. Where does the data live?</h2>
 <ul>
-  <li><strong>On your device</strong>, in the app's private SwiftData store (sandboxed, accessible only to Travel Log).</li>
-  <li>If you enable <strong>iCloud sync</strong> in Settings, the same data syncs through your own iCloud account to your other Apple devices. The container is a <em>CloudKit private database</em> — by Apple's design, only you (and the devices signed into your Apple ID) can read it. The developer cannot. See Apple's <a href="https://www.apple.com/legal/privacy/">iCloud privacy policy</a> for how Apple itself handles iCloud data.</li>
+  <li><strong>On your device</strong>, in the app's sandboxed SwiftData store and supporting private files and settings. Travel Log's widgets use the same private app-group container. Trip information donated to Spotlight, Siri or Shortcuts is stored and managed by iOS.</li>
+  <li>If you enable <strong>iCloud sync</strong> in Settings, app data syncs through your own iCloud account to your other Apple devices using a <em>CloudKit private database</em> and, for a small number of preferences, iCloud key-value storage. Apple states that a private CloudKit database is available only to its user by default and is not visible in the developer portal. See Apple's <a href="https://www.apple.com/legal/privacy/">iCloud privacy policy</a> for how Apple itself handles iCloud data.</li>
+  <li><strong>Files you export</strong> live in the location you select, outside Travel Log's control. Deleting data from the app does not delete copies that you exported or shared.</li>
 </ul>
 
 <h2>5. Third parties</h2>
-<p>None. There are no advertising networks, no analytics providers, no third-party data processors. The only external services the app talks to are <strong>Apple's own</strong>: MapKit (reverse geocoding), PhotoKit (your photo library), CloudKit (your iCloud), and Apple Push Notification Service (so that CloudKit can notify your other devices of changes).</p>
+<p>There are no advertising networks, analytics providers or non-Apple SDKs in the app. The external services used by Travel Log are <strong>Apple's own</strong>: MapKit (place search and geocoding), WeatherKit (weather for stays and planned trips), CloudKit and iCloud key-value storage (optional sync), and Apple Push Notification Service (so that CloudKit can notify your devices of changes). Photos, Calendar, Spotlight, Siri, Shortcuts, widgets and local notifications are accessed through Apple's system frameworks. TestFlight and the App Store are separate Apple distribution services. Apple's privacy policy and the settings of your Apple Account and device govern Apple's handling of data.</p>
 
 <h2>6. Children</h2>
-<p>The app is not directed at children under 13 (or the equivalent age of digital consent in your jurisdiction). It does not knowingly process personal data of children. If you believe a child has used the app, you can simply delete the app and (if iCloud sync was used) clear its data from iCloud storage in iOS Settings.</p>
+<p>The app is not directed at children under 13 (or the equivalent age of digital consent in your jurisdiction), and the developer does not knowingly collect personal data from children. If a child uses the app, its on-device processing works in the same way described in this policy. You can delete the app and, if iCloud sync was used, clear its data from iCloud storage in iOS Settings. Contact the developer if a child sent information by email or through feedback and you want that information deleted.</p>
 
 <h2>7. How long is data kept?</h2>
 <p>Indefinitely on your device until you delete it. You can:</p>
 <ul>
   <li><strong>Delete individual trips or stays</strong> from inside the app.</li>
-  <li><strong>Delete all data</strong> from Settings → "Delete All Data" (this preserves only your Home and Routine Place definitions, so you do not have to set them up again).</li>
+  <li><strong>Delete all travel data</strong> from Settings → "Delete All Data." This removes pings, stays, trips, map visits, imported history, planned trips, yearly memories and related caches. Your Home and Routine Place definitions, permission choices and basic app preferences are kept.</li>
   <li><strong>Delete only the photo-import data</strong> from Settings → "Delete imported data" — cleanly removes everything that was created by the photo-library backfill.</li>
+  <li><strong>Delete Calendar-derived data</strong> from Settings → "Delete Calendar Data." This removes detected upcoming trips and clears generated trip titles and related calendar caches so they can be rebuilt without calendar context after access is disabled.</li>
   <li><strong>Delete the app</strong> from your device, which removes the local store. If iCloud sync was on, the data in iCloud remains until you also remove it from your iCloud storage (iOS Settings → Apple Account → iCloud → Manage Storage → Travel Log → Delete Data).</li>
+  <li><strong>Delete exported copies yourself.</strong> Files that you saved or shared outside the app are not controlled by Travel Log and are not removed by its deletion tools.</li>
 </ul>
+<p>Emails, feedback and diagnostic information retained by the developer are kept only as long as reasonably necessary to respond, investigate the issue and improve the app. TestFlight and App Store information is made available through Apple's systems and is also subject to Apple's retention rules and controls. You may contact the developer to request deletion of a message or feedback that we can identify.</p>
 
 <h2>8. Your rights</h2>
-<p>Because the developer holds none of your data, almost every data-subject request is satisfied by the in-app deletion tools above. The following rights are nevertheless acknowledged:</p>
+<p>Your travel database is held on your device and, if enabled, in your private iCloud storage, so the in-app tools above are the direct way to access, correct, export or delete it. For limited information that the developer may receive through email, TestFlight or App Store distribution, you can contact us using the address below. The following rights apply where the relevant law covers your request:</p>
 
 <h3>European Economic Area, United Kingdom, Switzerland (GDPR &amp; UK GDPR)</h3>
-<p>Under Articles 15–22 of the GDPR, you have the right to access, rectify, erase, restrict, port, and object to processing of your personal data, and to withdraw consent at any time. Because all such data resides on your device or in your iCloud account, you can exercise all of these rights directly via the app's data-management features and your device's iCloud controls. You also have the right to lodge a complaint with your national data-protection supervisory authority.</p>
+<p>Under Articles 15–22 of the GDPR, you may have rights to access, rectify, erase, restrict or object to processing, receive portable data, withdraw consent, and receive protections concerning automated decisions. You can exercise these rights for your travel history through the app's data-management features and your device's iCloud controls. Contact us for identifiable information that you sent to the developer. You also have the right to lodge a complaint with your national data-protection supervisory authority.</p>
 
 <h3>California (CCPA / CPRA)</h3>
-<p>California residents have the right to know, delete, correct, and limit the use of their personal information, and to opt out of any "sale" or "sharing" of personal information. <strong>We do not sell or share any personal information.</strong> The "know" and "delete" rights are satisfied by the in-app data-management features.</p>
+<p>California residents may have rights to know, delete, correct, and limit certain uses of their personal information, and to opt out of any "sale" or "sharing" of personal information. <strong>We do not sell or share personal information for cross-context behavioural advertising.</strong> The in-app tools cover your travel data, and you can contact us about identifiable information that you sent to the developer.</p>
 
 <p>For any rights request that the in-app controls do not satisfy, please write to <a href="mailto:travellog@kfragkoulis.com">travellog@kfragkoulis.com</a>.</p>
 
 <h2>9. International users</h2>
-<p>Because no data ever reaches the developer, no international transfer to the developer takes place. iCloud sync routes through Apple's infrastructure under Apple's iCloud terms; that transfer is governed by Apple's privacy policy.</p>
+<p>Your travel database does not transfer to the developer. iCloud, MapKit, WeatherKit, TestFlight and App Store distribution use Apple's infrastructure under Apple's terms and privacy policy. If you contact the developer directly, your message may be processed in Greece and by the communication service you choose.</p>
 
 <h2>10. Security</h2>
-<p>On-device data is stored in the app's sandboxed file container, protected by iOS Data Protection (encrypted when the device is locked). iCloud-synced data is protected by Apple's iCloud security model (end-to-end encrypted for users with Advanced Data Protection enabled). The developer holds no keys, no credentials, and no copies.</p>
+<p>On-device data is stored in sandboxed app and app-group containers and is protected by iOS device security and Data Protection. Data in the CloudKit private database is not visible in the developer portal. Apple states that third-party app data in iCloud is encrypted in transit and on Apple's servers, and that CloudKit encrypted fields and assets are end-to-end encrypted when Advanced Data Protection is enabled. The developer holds no keys or copies of your travel database. Exported files are protected only by the destination and sharing method you choose, so you should treat them as sensitive.</p>
 
 <h2>11. Changes to this policy</h2>
-<p>If this policy is updated, the "Last updated" date at the top of the page will change. Material changes (for example, introducing any actual data collection by the developer) would also be surfaced inside the app before they take effect.</p>
+<p>If this policy is updated, the "Last updated" date at the top of the page will change. Material changes, such as introducing collection of travel data by the developer, will also be communicated through the app or its distribution page when appropriate or legally required.</p>
 
 <h2>12. Contact</h2>
 <p>For any privacy-related question, please write to <a href="mailto:travellog@kfragkoulis.com">travellog@kfragkoulis.com</a>. We will reply within a reasonable time. If your request concerns your statutory rights under GDPR or CCPA, please include enough context for the request type to be identified.</p>
